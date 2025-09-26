@@ -138,9 +138,9 @@ def get_sentiment(review):
             compound += adj_score
 
     # ------------------- Final Sentiment -------------------
-    if compound >= 0.05:
+    if compound >= 0.10:
         return "Positive", compound, cleaned_review
-    elif compound <= -0.05:
+    elif compound <= -0.10:
         return "Negative", compound, cleaned_review
     else:
         return "Neutral", compound, cleaned_review
