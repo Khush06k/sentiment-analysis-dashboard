@@ -1,0 +1,5 @@
+punkt
+stopwords
+wordnet
+omw-1.4
+vader_lexicon
