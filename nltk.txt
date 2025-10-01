@@ -1,0 +1,7 @@
+punkt
+punkt_tab
+stopwords
+wordnet
+omw-1.4
+vader_lexicon
+averaged_perceptron_tagger
