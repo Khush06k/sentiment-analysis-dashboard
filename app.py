@@ -131,25 +131,25 @@ def get_sentiment(review):
 # ------------------------------------------------------------
 st.set_page_config(
     page_title="Customer Review Sentiment Dashboard",
-    page_icon="💬",
+  
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.sidebar.title("⚙️ Dashboard Controls")
-uploaded_file = st.sidebar.file_uploader("📂 Upload Excel File", type=["xlsx"])
+st.sidebar.title(" Dashboard Controls")
+uploaded_file = st.sidebar.file_uploader(" Upload Excel File", type=["xlsx"])
 st.sidebar.markdown("---")
 
-st.title("💬 Sentiment Analysis of Customer Reviews")
+st.title(" Sentiment Analysis of Customer Reviews")
 st.markdown("This dashboard analyzes customer reviews and classifies them as **Positive**, **Negative**, or **Neutral**.")
 
 # --------------- Uploaded File Sentiment Pipeline ----------
 if uploaded_file:
     df = pd.read_excel(uploaded_file)
     if "Customer_Review" not in df.columns:
-        st.error("❌ Excel file must contain a column named 'Customer_Review'")
+        st.error(" Excel file must contain a column named 'Customer_Review'")
     else:
-        st.success("✅ File uploaded successfully!")
+        st.success(" File uploaded successfully!")
 
         sentiments = []
         compounds = []
@@ -166,19 +166,19 @@ if uploaded_file:
         df["Sentiment"] = sentiments
 
         # ---------------- Show Table ----------------
-        st.subheader("📊 Sample Data with Sentiment (with Preprocessing)")
+        st.subheader("Sample Data with Sentiment (with Preprocessing)")
         num_rows = st.slider("Select number of reviews to display:", 10, len(df), 10)
         st.dataframe(df.head(num_rows))
         st.markdown(f"**Total Reviews Analyzed: {len(df)}**")
 
         # ---------------- Charts ----------------
-        st.subheader("📈 Sentiment Distribution (All Reviews)")
+        st.subheader("Sentiment Distribution (All Reviews)")
         sentiment_counts = df.head(num_rows)['Sentiment'].value_counts(normalize=True) * 100
 
         col1, col2 = st.columns(2)
 
         with col1:
-            st.markdown("### 📊 Bar Chart")
+            st.markdown("###  Bar Chart")
             fig1, ax1 = plt.subplots()
             sentiment_counts.plot(kind="bar", ax=ax1, color=["green", "red", "gray"])
             ax1.set_ylabel("Percentage (%)")
@@ -187,7 +187,7 @@ if uploaded_file:
             st.pyplot(fig1)
 
         with col2:
-            st.markdown("### 🥧 Pie Chart")
+            st.markdown("###  Pie Chart")
             fig2, ax2 = plt.subplots()
             color_map = {"Positive":"green", "Negative":"red", "Neutral":"gray"}
             colors = [color_map[label] for label in sentiment_counts.index]
@@ -205,14 +205,14 @@ if uploaded_file:
         output = io.BytesIO()
         df.to_excel(output, index=False)
         st.download_button(
-            label="⬇️ Download full results as Excel",
+            label=" Download full results as Excel",
             data=output.getvalue(),
             file_name="sentiment_results.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
 # --------------- User Input Preprocessing & Saving -----------
-st.subheader("🧪 Test Your Own Review")
+st.subheader("Test Your Own Review")
 user_input = st.text_area("📝 Enter a review or paragraph here:")
 
 if user_input:
@@ -247,4 +247,5 @@ if user_input:
         else:
             new_entry.to_excel(save_file, index=False)
 
-        st.success(f"✅ Review and sentiment saved to {save_file}!")
+        st.success(f" Review and sentiment saved to {save_file}!")
+
