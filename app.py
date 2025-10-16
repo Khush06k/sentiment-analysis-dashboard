@@ -213,7 +213,7 @@ if uploaded_file:
 
 # --------------- User Input Preprocessing & Saving -----------
 st.subheader("Test Your Own Review")
-user_input = st.text_area("📝 Enter a review or paragraph here:")
+user_input = st.text_area(" Enter a review or paragraph here:")
 
 if user_input:
     sentiment_result, polarity, clean_input = get_sentiment(user_input)
@@ -248,4 +248,5 @@ if user_input:
             new_entry.to_excel(save_file, index=False)
 
         st.success(f" Review and sentiment saved to {save_file}!")
+
 
